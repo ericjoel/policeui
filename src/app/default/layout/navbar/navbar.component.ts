@@ -7,8 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  
+  menu = [
+    {
+      text: 'Agregar Poliza',
+      route: `/police`
+    }
+  ];
 
+  constructor() { }
+  
   ngOnInit() {
   }
 
