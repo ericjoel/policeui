@@ -1,0 +1,28 @@
+.police-card {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.police-full-width {
+    width: 100%;
+}
+  
+.police-content{
+    padding: 10px;
+}
+
+.police-divider {
+    padding-top: 20px;
+}
+
+.police-actions {
+    padding: 10px;
+    margin-bottom: 20px !important;
+}
+
+.center {
+    margin: 0 auto !important;
+    text-align: center;
+}

@@ -1,3 +1,69 @@
-<p>
-  police works!
-</p>
+<mat-card class="police-card">
+  <mat-card-header>       
+  </mat-card-header>  
+  <form [formGroup]="form" (submit)="savePolice($event)">
+    <mat-card-content class="police-content">              
+      <mat-card-title>Ubigeo:</mat-card-title>
+      <mat-form-field class="police-full-width">
+        <mat-select placeholder="Selecciona departamento" formControlName="departmentControl">
+          <mat-option *ngFor="let option of filteredOptionsDepartment | async"[value]="option.Id"
+            (onSelectionChange)="changeDepartment($event, option)">
+            {{ option.Name }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+            {{formErrors.departmentControl}}
+        </mat-error> 
+      </mat-form-field> 
+      
+      <mat-form-field class="police-full-width">
+        <mat-select placeholder="Selecciona provincia" formControlName="provinceControl">
+          <mat-option *ngFor="let option of filteredOptionsProvince | async"[value]="option.Id"
+            (onSelectionChange)="changeProvince($event, option)">
+            {{ option.Name }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+            {{formErrors.provinceControl}}
+        </mat-error> 
+      </mat-form-field>     
+
+      <mat-form-field class="police-full-width">
+        <mat-select placeholder="Selecciona distrito" formControlName="districtControl">
+          <mat-option *ngFor="let option of filteredOptionsDistrict | async"[value]="option.Id">
+            {{ option.Name }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+            {{formErrors.districtControl}}
+        </mat-error> 
+      </mat-form-field>     
+
+      <mat-card-title class="police-divider">Vigencia de la póliza:</mat-card-title>
+
+      <mat-form-field class="police-full-width">
+        <input matInput [matDatepicker]="startDatePicker" 
+        [max]="maxDate" placeholder="Inicio de vigencia" 
+        (dateChange)="changeStartDate($event)"
+        [formControl]="startDateControl" formControlName="startDateControl">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #startDatePicker disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="police-full-width">
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Fin de vigencia" 
+        [formControl]="endDateControl" formControlName="endDateControl"
+        >
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #endDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-error>
+          {{policeErrorMessage}}
+      </mat-error>   
+      
+    </mat-card-content>  
+    <mat-card-actions class="police-actions center">
+      <button type="submit" mat-button>{{!form.valid ? "Complete el formulario" : "Guardar"}}</button>    
+    </mat-card-actions>
+  </form>
+</mat-card>
